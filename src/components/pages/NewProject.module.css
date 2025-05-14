@@ -1,0 +1,15 @@
+@charset "UFT-8";
+
+.newproject_container{
+    width: 450px;
+    margin: 0 auto;
+    padding: 54px;
+}
+
+.newproject_container h1{
+    margin-bottom: 5px;
+}
+
+.newproject_container p{
+    color: #7b7b7b;
+}

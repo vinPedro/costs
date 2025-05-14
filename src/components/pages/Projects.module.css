@@ -1,0 +1,16 @@
+@charset "UFT-8";
+
+.project_container{
+    width: 100%;
+    padding: 20px;
+}
+
+.title_container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.title_container a{
+    border-radius: 5px;
+}

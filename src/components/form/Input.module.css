@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.form_control{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.form_control label{
+    margin-bottom: 24px;
+    font-weight: bold;
+}
+
+.form_control input{
+    padding: 12px;
+    border-radius: 0;
+    border: none;
+}
+
+.form_control input::placeholder{
+    color: #7b7b7b;
+}
