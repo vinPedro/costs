@@ -24,7 +24,7 @@ function ProjectCard({ id, name, budget, category, handleRemove }) {
           <BsPencil />
           Editar
         </Link>
-        <button onClick={remove}>
+        <button onClick={remove} className={style.project_card_buttom}>
           <BsFillTrashFill /> Remover
         </button>
       </div>

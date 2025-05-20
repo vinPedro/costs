@@ -7,6 +7,8 @@
     width: 24%;
     min-width: 250px;
     margin: 0.5%;
+    position: relative;
+    height: 235px;
 }
 
 .project_card h4{
@@ -20,10 +22,29 @@
 .project_card p{
     color: #7a7a7a;
     margin-bottom: 10px;
+    width: 34ch;
+    word-wrap: break-word;
 }
 
 .project_card p span{
     font-weight: bold;
+}
+
+.project_card a{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+}
+
+.project_card button{
+    position: absolute;
+    bottom: 10px;
+}
+
+.project_card_buttom{
+    position: absolute;
+    bottom: 10px;
+    left: 125px;
 }
 
 .category_text{

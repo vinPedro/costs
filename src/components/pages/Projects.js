@@ -28,7 +28,7 @@ function Projects() {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProjects(data);
         setRemoveLoading(true)
       })
@@ -45,7 +45,7 @@ function Projects() {
     }).then(resp => resp.json())
     .then(() => {
       setProjects(projects.filter((projects) => projects.id !== id))
-      setProjectMessage('Projeto removido com sucesso!')
+      setProjectMessage({text: 'Projeto removido com sucesso!', key: Date.now()})
     })
     .catch(err => console.log(err))
   }

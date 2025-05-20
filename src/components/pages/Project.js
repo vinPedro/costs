@@ -30,7 +30,6 @@ function Project() {
   }
 
   function createService(project){
-    setMessage('')
      
     //last service
     const lastService = project.services[project.services.length -1]
@@ -43,7 +42,7 @@ function Project() {
 
     //max value validation
     if(newCost > parseFloat(project.budget)){
-      setMessage('Orçamento ultrapassado, verifique o valor do serviço')
+      setMessage({ text: 'Orçamento ultrapassado, verifique o valor do serviço', key: Date.now() })
       setType('error')
       project.services.pop()
       return false
@@ -63,7 +62,7 @@ function Project() {
       .then((resp) => resp.json())
       .then((data) => {
         setShowServiceForm(false)
-        setMessage('Serviço adicionado ao projeto!')
+        setMessage({text: 'Serviço adicionado ao projeto!', key: Date.now() })
         setType('success')
       })
       .catch((err) => console.log(err));
@@ -92,17 +91,17 @@ function Project() {
       .then((data) => {
         setProject(projectUpdated);
         setServices(servicesUpdated)
-        setMessage('Serviço removido com sucesso!')
+        setMessage({text: 'Serviço removido com sucesso!', key: Date.now() })
         setType('success')
       })
       .catch((err) => console.log(err));
   }
 
   function editPost(project) {
-    setMessage("");
+    
     //budget validation
     if (project.budget < project.cost) {
-      setMessage("O orçamento não pode ser menor que o custo do projeto!");
+      setMessage({text: "O orçamento não pode ser menor que o custo do projeto!", key: Date.now() });
       setType("error");
       return false;
     }
@@ -118,7 +117,7 @@ function Project() {
       .then((data) => {
         setProject(data);
         setShowProjectForm(false);
-        setMessage("Projeto Atualizado");
+        setMessage({text:"Projeto Atualizado", key: Date.now() });
         setType("success");
       })
       .catch((err) => console.log(err));

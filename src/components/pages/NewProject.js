@@ -18,17 +18,26 @@ function NewProject() {
       },
       body: JSON.stringify(project),
     })
-    .then((resp) => resp.json())
+      .then((resp) => resp.json())
       .then((data) => {
-          console.log(data);
-          //redirect
-          navigate('/projects',{state: {message: 'Projeto criado com sucesso!' }} )
-        })
+        // console.log(data);
+        //redirect
+        navigate("/projects", {
+          state: {
+            message: {
+              text: "Projeto criado com sucesso!",
+              key: Date.now(),
+              type: "success",
+            },
+          },
+        });
+      })
       .catch((err) => console.log(err));
   }
 
   return (
     <div className={style.newproject_container}>
+      {/* message */}
       <h1>Criar Projeto:</h1>
       <p>Crie seu projeto para adicionar os seus serviços.</p>
       <ProjectForm handleSubmit={createPost} btnText="Criar Projeto" />

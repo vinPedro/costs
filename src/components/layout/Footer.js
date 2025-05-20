@@ -10,10 +10,10 @@ function Footer(){
                     <FaFacebook />
                 </li>
                 <li>
-                    <FaInstagram />
+                     <FaInstagram />
                 </li>
                 <li>
-                    <FaLinkedin />
+                    <a href="https://www.linkedin.com/in/pedro-vinicius-lopes-6bb96a289" target="_black" rel="noopener noreferrer"><FaLinkedin /></a>
                 </li>
             </ul>
             <p className={styles.copy_right}>

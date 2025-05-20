@@ -3,4 +3,9 @@
 .contact{
     width: 100%;
     min-height: 500px;
+    padding: 25px;
+}
+
+.contact h1{
+    margin-bottom: 10px;
 }

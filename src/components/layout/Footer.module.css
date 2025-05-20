@@ -24,6 +24,11 @@
 .social_list svg{
     font-size: 18px;
     cursor: pointer;
+    color: #fff;
+}
+
+.social_list svg:hover{
+    color: #FFBB33;
 }
 
 .copy_right{

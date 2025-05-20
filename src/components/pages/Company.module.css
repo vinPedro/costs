@@ -3,4 +3,17 @@
 .company{
     width: 100%;
     min-height: 500px;
+    padding: 25px;
+}
+
+.company h1{
+    margin-bottom: 10px;
+}
+
+.company svg{
+    color: black;
+}
+
+.company svg:hover{
+    color: #ffbb33;
 }
