@@ -4,6 +4,7 @@
     width: 450px;
     margin: 0 auto;
     padding: 54px;
+    min-height: 80vh;
 }
 
 .newproject_container h1{

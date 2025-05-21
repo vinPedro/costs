@@ -3,7 +3,7 @@
 .project_details{
     width: 100%;
     padding: 24px;
-    min-height: 500px;
+    min-height: 80vh;
 }
 
 .project_details h1,
