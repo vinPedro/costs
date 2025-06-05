@@ -8,17 +8,16 @@ import Message from "../layout/Message";
 import style from "./ProjectForm.module.css";
 
 function ProjectForm({ handleSubmit, btnText, projectData }) {
-
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
-  const [message, setMessage] = useState()
-  const [type, setType] = useState()
+  const [message, setMessage] = useState();
+  const [type, setType] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories", {
+    fetch("http://localhost:8080/api/categorias", {
       method: "GET",
       headers: {
-        "Content-Type": "aplication/json",
+        "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -29,22 +28,25 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
   }, []);
 
   const submit = (e) => {
-
     e.preventDefault();
     // console.log(project)
-    if (!project.name || !project.budget || !project.category || project.category.name === "Selecione uma opção:") {
-      setMessage({text: "Preencha todos os campos!", key: Date.now() })
-      setType('error')
+    if (
+      !project.nome ||
+      !project.budget ||
+      !project.categoria ||
+      project.categoria.nome === "Selecione uma opção:"
+    ) {
+      setMessage({ text: "Preencha todos os campos!", key: Date.now() });
+      setType("error");
       return false;
-    }
-
-    else if(parseFloat(project.budget) < 0){
-      setMessage({text: "O orçamento não pode ser negativo!", key: Date.now() })
-      setType('error')
+    } else if (parseFloat(project.budget) < 0) {
+      setMessage({
+        text: "O orçamento não pode ser negativo!",
+        key: Date.now(),
+      });
+      setType("error");
       return false;
-    }
-
-    else if(project.name.length > 24){
+    } else if (project.nome.length > 24) {
       setMessage({
         text: "O nome não pode ser maior que 24 caracteres",
         key: Date.now(),
@@ -52,7 +54,7 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
       setType("error");
       return false;
     }
-    
+
     handleSubmit(project);
   };
 
@@ -63,23 +65,22 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
   function handleCategory(e) {
     setProject({
       ...project,
-      category: {
+      categoria: {
         id: e.target.value,
-        name: e.target.options[e.target.selectedIndex].text,
+        nome: e.target.options[e.target.selectedIndex].text,
       },
     });
   }
 
   return (
-    
     <form onSubmit={submit} className={style.projectform_container}>
       <Input
         type="text"
         text="Nome do projeto"
-        name="name"
+        name="nome"
         placeholder="Insira o nome do Projeto:"
         handlerOnChange={handleChange}
-        value={project.name ? project.name : ""}
+        value={project.nome ? project.nome : ""}
       />
       <Input
         type="number"
@@ -90,11 +91,11 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
         value={project.budget ? project.budget : ""}
       />
       <Select
-        name="category_id"
+        name="categoria_id"
         text="Selecione a categoria"
         options={categories}
         handlerOnChange={handleCategory}
-        value={project.category ? project.category.id : ""}
+        value={project.categoria ? project.categoria.id : ""}
       />
       {message && <Message type={type} msg={message} />}
       <SubmitButton text={btnText} />

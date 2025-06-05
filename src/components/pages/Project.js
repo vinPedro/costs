@@ -1,6 +1,6 @@
 import style from "./Project.module.css";
 
-import { parse, v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -44,7 +44,7 @@ function Project() {
     if(newCost > parseFloat(project.budget)){
       setMessage({ text: 'Orçamento ultrapassado, verifique o valor do serviço', key: Date.now() })
       setType('error')
-      project.services.pop()
+      project.servicos.pop()
       return false
     }
 
@@ -52,7 +52,7 @@ function Project() {
     project.cost = newCost
 
     //update project
-    fetch(`http://localhost:5000/projects/${project.id}`,{
+    fetch(`http://localhost:8080/api/projetos/${project.id}`,{
       method: 'PATCH',
       headers:{
         "Content-Type": "application/json",
@@ -71,8 +71,8 @@ function Project() {
 
   function removeService(id, cost){
 
-    const servicesUpdated = project.services.filter(
-      (service) => service.id !== id
+    const servicesUpdated = project.servicos.filter(
+      (servico) => servico.id !== id
     )
 
     const projectUpdated = project
@@ -80,7 +80,7 @@ function Project() {
     projectUpdated.services = servicesUpdated
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost)
     
-    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
+    fetch(`http://localhost:8080/api/projetos/${projectUpdated.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +106,7 @@ function Project() {
       return false;
     }
 
-    fetch(`http://localhost:5000/projects/${id}`, {
+    fetch(`http://localhost:8080/api/projetos/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -125,7 +125,7 @@ function Project() {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch(`http://localhost:5000/projects/${id}`, {
+      fetch(`http://localhost:8080/api/projetos/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ function Project() {
         .then((resp) => resp.json())
         .then((data) => {
           setProject(data);
-          setServices(data.services)
+          setServices(data.servicos)
         })
         .catch((err) => console.log(err));
     }, 250);
@@ -145,16 +145,16 @@ function Project() {
       {project.name ? (
         <div className={style.project_details}>
           <Container customClass="column">
-            {message && <Message type={type} msg={message} />}
+            {message && <Message msg={message} />}
             <div className={style.details_container}>
-              <h1>Projeto: {project.name}</h1>
+              <h1>Projeto: {project.nome}</h1>
               <button className={style.btn} onClick={toggleProjectForm}>
                 {!showProjectForm ? "Editar Projeto" : "Fechar"}
               </button>
               {!showProjectForm ? (
                 <div className={style.project_info}>
                   <p>
-                    <span>Categoria:</span> {project.category.name}
+                    <span>Categoria:</span> {project.categoria.nome}
                   </p>
                   <p>
                     <span>Total do orçamento:</span> R${project.budget}
@@ -194,9 +194,9 @@ function Project() {
                 services.map((service) => (
                   <ServiceCard 
                     id={service.id}
-                    name={service.name}
+                    name={service.nome}
                     cost={service.cost}
-                    description={service.description}
+                    description={service.descricao}
                     key={service.id}
                     handleRemove={removeService}
                   />

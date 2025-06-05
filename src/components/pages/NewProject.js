@@ -9,9 +9,14 @@ function NewProject() {
   function createPost(project) {
     //initialize cost and services
     project.cost = 0;
-    project.services = [];
+    project.servicos = [];
 
-    fetch("http://localhost:5000/projects", {
+    project.categoria = {
+      id: project.categoria.id,
+      nome: project.categoria.nome
+    };
+
+    fetch("http://localhost:8080/api/projetos", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
