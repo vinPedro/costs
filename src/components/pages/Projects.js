@@ -45,6 +45,7 @@ function Projects() {
       .then(() => {
         setProjects(projects.filter((projects) => projects.id !== id));
         setProjectMessage({
+          type: "success",
           text: "Projeto removido com sucesso!",
           key: Date.now(),
         });
@@ -65,7 +66,7 @@ function Projects() {
             projects.map((project) => (
               <ProjectCard
                 id={project.id}
-                name={project.ome}
+                name={project.nome}
                 budget={project.budget}
                 category={project.categoria.nome}
                 key={project.id}

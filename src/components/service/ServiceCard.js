@@ -2,18 +2,18 @@ import style from '../project/ProjectCard.module.css'
 
 import {BsFillTrashFill} from 'react-icons/bs'
 
-function ServiceCard({id, name, cost, description, handleRemove}){
+function ServiceCard({id, name, valor, description, handleRemove}){
 
     const remove = (e) => {
         e.preventDefault()
-        handleRemove(id, cost)
+        handleRemove(id, valor)
     }
 
     return(
         <div className={style.project_card}>
             <h4>{name}</h4>
             <p>
-                <span>Custo Total: </span> R${cost}
+                <span>Custo Total: </span> R${valor}
             </p>
             <p>{description}</p>
             <div className={style.project_card_actions}>

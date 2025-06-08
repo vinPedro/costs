@@ -36,22 +36,21 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
       !project.categoria ||
       project.categoria.nome === "Selecione uma opção:"
     ) {
-      setMessage({ text: "Preencha todos os campos!", key: Date.now() });
-      setType("error");
+      setMessage({type: "error", text: "Preencha todos os campos!", key: Date.now() });
       return false;
     } else if (parseFloat(project.budget) < 0) {
       setMessage({
+        type: "error",
         text: "O orçamento não pode ser negativo!",
         key: Date.now(),
       });
-      setType("error");
       return false;
     } else if (project.nome.length > 24) {
       setMessage({
+        type: "error",
         text: "O nome não pode ser maior que 24 caracteres",
         key: Date.now(),
       });
-      setType("error");
       return false;
     }
 
